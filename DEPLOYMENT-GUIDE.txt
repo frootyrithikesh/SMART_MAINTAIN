@@ -1,0 +1,33 @@
+SMART MAINTAIN – GONDA LPG PLANT
+DEPLOYMENT PACKAGE
+
+PACKAGE CONTENTS
+1. index.html  - Website frontend for GitHub Pages.
+2. Code.gs     - Google Apps Script backend, including AMC reminder emails and the revised test email.
+
+WEBSITE DEPLOYMENT (GITHUB PAGES)
+1. Extract this ZIP file.
+2. Open your existing SMART MAINTAIN GitHub repository.
+3. Replace the repository's root index.html with the index.html from this package.
+4. Commit the change to the branch/folder configured for GitHub Pages.
+5. Wait for the Pages deployment to finish, then open the website and press Ctrl+F5.
+
+GOOGLE APPS SCRIPT BACKEND
+1. Open the existing Apps Script project connected to SMART MAINTAIN.
+2. Replace the contents of Code.gs with the Code.gs in this package.
+3. Save the project.
+4. Sign in as the intended corporate sender account and authorize the project as required.
+5. Run setupSmartMaintain() if the database/trigger setup is required. It retains the existing spreadsheet ID stored in Script Properties when run in the same project.
+6. Run sendTestEmail() to test delivery to the configured recipients.
+7. For a changed backend deployment, use Deploy > Manage deployments > Edit > New version > Deploy. Keep the existing deployment URL if updating the existing deployment.
+
+IMPORTANT
+- The website index.html already contains the existing Apps Script /exec endpoint. Do not change it unless you create a different Apps Script deployment URL.
+- For GitHub Pages, index.html is the website entry point. Code.gs is not uploaded as a GitHub Pages backend; it belongs in Google Apps Script.
+- The Apps Script daily trigger runs as the Google account that created that trigger. To send from the intended mailbox, authorize and create the trigger while signed in to that account.
+- The package does not contain mailbox passwords or OTPs.
+- The website's local browser storage and the Apps Script cloud database are separate; use the existing sync feature and verify cloud sync after deployment.
+
+VALIDATION PERFORMED
+- Both inline JavaScript blocks in index.html passed Node.js syntax checking.
+- Code.gs passed Node.js syntax checking after checking it as a JavaScript source file.
